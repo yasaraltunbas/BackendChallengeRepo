@@ -37,7 +37,16 @@ public class Controller {
 		
 		List<Employee> employees = employeeJpaRepository.findAll();
 		return employees.stream().filter(x->x.getCompanyId()==companyId).toList();
+		
 	}
+	
+	@PostMapping("/addCompany")
+	public Company addOneCompany(@RequestBody Company newCompany ) {
+		
+		return companyJpaRepository.save(newCompany);
+	}
+	
+	
 	
 	@PostMapping("/add")
 	public Employee addOneEmployeeToCompany(@RequestBody OrderRequest request) {
